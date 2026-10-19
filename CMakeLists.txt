@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(nibbleknight64 VERSION 0.2.8 LANGUAGES C)
+add_library(nibbleknight64 STATIC engine.c)
+target_compile_features(nibbleknight64 PUBLIC c_std_99)
+target_include_directories(nibbleknight64 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+if(NOT CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+  message(FATAL_ERROR "Use GCC or Clang: the engine uses their 64-bit bit-scan intrinsics.")
+endif()
